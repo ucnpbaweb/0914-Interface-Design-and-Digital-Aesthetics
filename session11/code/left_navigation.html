@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Left navigation</title>
+		<style type="text/css">
+			body {
+				font-family: Verdana, Helvetica, sans-serif;
+				width: 700px;
+				margin: 0 auto;
+			}
+			
+			body > header {
+				border-style: solid;
+				border-width: 0 0 1px 0;
+				border-color: black;
+			}
+			
+			nav.leftmenu {
+				width: 140px;
+				float: left;
+			}
+			
+			ul.leftmenu {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				position: relative;
+				z-index: 5;
+			}
+			
+			ul.leftmenu > li {
+				position: relative;
+			}
+			
+			ul.leftmenu a {
+				display: block;
+				position: relative;
+			}
+			
+			ul.leftmenu > li > a {
+				border: solid 1px transparent;
+				padding: 3px;
+				margin: 2px;
+			}
+			
+			ul.leftmenu > li > a:hover, ul.leftmenu > li > a:focus {
+				border: solid 1px black;
+			}
+			
+			ul.submenu {
+				display: none;
+				position: absolute;
+				background-color: yellow;
+				margin: 0;
+				padding: 0;
+				left: 120px;
+				top: 0;
+				list-style: none;
+				z-index: 10;
+				width: 100px;
+			}
+			
+			div.main {
+				margin: 0 0 0 150px;
+			}
+
+		</style>
+		<script type="text/javascript"> 
+			var submenus;
+			
+			var showsubmenu = function(e){
+				var elm = e.target;
+				for(var i = 0; i < submenus.length; i++){
+					submenus[i].style.display = 'none';
+				}
+				if(elm.nextElementSibling && elm.nextElementSibling.className == 'submenu'){
+					elm.nextElementSibling.style.display = 'block';
+				}
+			}
+
+			window.addEventListener('load', function(){
+				submenus = document.getElementsByClassName('submenu');
+				var toplinks = document.querySelectorAll('ul.leftmenu > li > a');
+				for(var i = 0; i < toplinks.length; i++){
+					toplinks[i].addEventListener('mouseover', showsubmenu, false);
+					toplinks[i].addEventListener('focus', showsubmenu, false);
+				}
+			}, false);
+		</script>
+		
+	</head>
+	<body>
+		<header>
+			<h1>left navigation</h1>
+		</header>
+		<nav class="leftmenu">
+			<ul class="leftmenu">
+				<li>
+					<a href="#">Basic Page</a>
+				</li>
+				<li>
+					<a href="#">Basic Page</a>
+					<ul class="submenu">
+						<li><a href="#s1">Subpage 1</a></li>
+						<li><a href="#s2">Subpage 2</a></li>
+						<li><a href="#s3">Subpage 3</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Basic Page</a>
+					<ul class="submenu">
+						<li><a href="#s1">Subpage 1</a></li>
+						<li><a href="#s2">Subpage 2</a></li>
+						<li><a href="#s3">Subpage 3</a></li>
+						<li><a href="#s4">Subpage 4</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Basic Page</a>
+				</li>
+				<li>
+					<a href="#">Basic Page</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="main">
+			<article>
+				<h2>Sub-title</h2>
+				<p>Text content.</p>
+			</article>
+			<footer>
+				<p>© Author</p>
+			</footer>
+		</div>
+	</body>
+</html>
